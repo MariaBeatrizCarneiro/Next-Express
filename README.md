@@ -1,40 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Next.js + Express Project
 
-## Getting Started
+Um projeto full-stack que combina Next.js para o frontend com Express.js para o backend, criando uma aplicação web completa para gestão de produtos.
 
-First, run the development server:
+## 🚀 Funcionalidades
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- ✅ Listagem de produtos
+- ✅ Adicionar novos produtos
+- ✅ Editar produtos existentes
+- ✅ Eliminar produtos
+- ✅ Visualização detalhada de produtos
+- ✅ Interface responsiva
+
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Next.js** - Framework React para produção
+- **Express.js** - Framework web para Node.js
+- **React 19** - Biblioteca para interfaces de utilizador
+- **TailwindCSS** - Framework CSS utilitário
+- **CORS** - Middleware para Cross-Origin Resource Sharing
+- **Nodemon** - Ferramenta de desenvolvimento para reinício automático
+
+
+## 📁 Estrutura do Projeto
+
+```
+├── src/
+│   ├── components/
+│   │   ├── AdicionarProduto.jsx
+│   │   ├── EditarProduto.jsx
+│   │   ├── Footer.jsx
+│   │   └── Navbar.jsx
+│   ├── pages/
+│   │   ├── _app.js
+│   │   ├── _document.js
+│   │   ├── index.js
+│   │   ├── produtos.js
+│   │   └── produto/[id].js
+│   ├── services/
+│   │   └── api.js
+│   └── styles/
+│       └── globals.css
+├── public/
+├── db.json
+├── server.js
+└── package.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### 👩🏼‍💻 Passos para executar o projeto
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+1. **Instale as dependências e corra o projeto**
+   ```bash
+   npm install
+   npm run dev
+    ```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+2. **Acesse a aplicação**
+   - Frontend: [http://localhost:3000](http://localhost:3000)
+   - API Backend: [http://localhost:3000/api](http://localhost:3000/api)
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+### Scripts Disponíveis
 
-To learn more about Next.js, take a look at the following resources:
+- `npm run dev` - Executa o servidor em modo desenvolvimento
+- `npm run build` - Cria build de produção
+- `npm start` - Executa o servidor em modo produção
+- `npm run server` - Executa apenas o servidor Express
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📡 API Endpoints
 
-## Deploy on Vercel
+A aplicação inclui os seguintes endpoints da API:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `GET /api/produtos` - Lista todos os produtos
+- `GET /api/produto/:id` - Obtém detalhes de um produto específico
+- `POST /api/produtos` - Adiciona um novo produto
+- `PUT /api/produtos/:id` - Atualiza um produto existente
+- `DELETE /api/produtos/:id` - Elimina um produto
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+
+## 🎨 Interface
+
+A aplicação inclui as seguintes páginas:
+
+- **Home** (`/`) - Página inicial
+- **Produtos** (`/produtos`) - Lista e gestão de produtos
+- **Detalhes do Produto** (`/produto/[id]`) - Visualização detalhada
+
+
+# Tens um tutorial para fazeres este projeto do zero em `next_com_express.md`
+
