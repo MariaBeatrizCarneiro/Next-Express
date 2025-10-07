@@ -1,0 +1,24 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Laptop Gaming",
+      "preco": "1299.99"
+    },
+    {
+      "id": 2,
+      "nome": "Smartphone Pro",
+      "preco": 899.5
+    },
+    {
+      "id": 3,
+      "nome": "Headphones Bluetooth",
+      "preco": 159.99
+    },
+    {
+      "id": 4,
+      "nome": "Smartwatch",
+      "preco": 299.99
+    }
+  ]
+}
