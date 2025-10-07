@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import AdicionarProduto from '@/components/AdicionarProduto'
 import EditarProduto from '@/components/EditarProduto'
-import { buscarProdutosAPI, eliminarProdutoAPI } from '@/services/api'
+import { carregarProdutosAPI, eliminarProdutoAPI } from '@/services/api'
 
 export default function Produtos() {
   const [produtos, setProdutos] = useState([])
@@ -10,18 +10,18 @@ export default function Produtos() {
   const [showEditModal, setShowEditModal] = useState(false)
   const [produtoToEdit, setProdutoToEdit] = useState(null)
 
-  // Buscar produtos quando a página abre
+  // Carregar produtos quando a página abre
   useEffect(() => {
-    buscarProdutos()
+    carregarProdutos()
   }, [])
 
-  // Função para buscar produtos
-  async function buscarProdutos() {
+  // Função para carregar produtos
+  async function carregarProdutos() {
     try {
-      const data = await buscarProdutosAPI()
+      const data = await carregarProdutosAPI()
       setProdutos(data)
     } catch (error) {
-      alert('Erro ao buscar produtos')
+      alert('Erro ao carregar produtos')
     }
   }
 
@@ -92,13 +92,13 @@ export default function Produtos() {
       <AdicionarProduto
         isOpen={showAddModal}
         onClose={() => setShowAddModal(false)}
-        onSuccess={buscarProdutos}
+        onSuccess={carregarProdutos}
       />
 
       <EditarProduto
         isOpen={showEditModal}
         onClose={() => setShowEditModal(false)}
-        onSuccess={buscarProdutos}
+        onSuccess={carregarProdutos}
         produto={produtoToEdit}
       />
     </div>

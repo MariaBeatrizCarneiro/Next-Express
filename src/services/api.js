@@ -1,5 +1,5 @@
-// Buscar todos os produtos
-export async function buscarProdutosAPI() {
+// Carregar todos os produtos
+export async function carregarProdutosAPI() {
   try {
     const response = await fetch('/api/produtos')
     
@@ -17,8 +17,8 @@ export async function buscarProdutosAPI() {
   }
 }
 
-// Buscar produto por ID
-export async function buscarProdutoPorIdAPI(id) {
+// Carregar produto por ID
+export async function carregarProdutoPorIdAPI(id) {
   try {
     const response = await fetch(`/api/produtos/${id}`)
     

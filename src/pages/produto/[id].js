@@ -1,33 +1,29 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { buscarProdutoPorIdAPI } from '@/services/api'
+import { carregarProdutoPorIdAPI } from '@/services/api'
 
 export default function ProdutoDetalhes() {
   const router = useRouter()
   const { id } = router.query
   const [produto, setProduto] = useState(null)
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const carregarProduto = async () => {
       if (!id) return
       
       try {
-        const data = await buscarProdutoPorIdAPI(id)
+        const data = await carregarProdutoPorIdAPI(id)
         setProduto(data)
       } catch (error) {
         console.error(error)
         alert('Erro ao carregar produto')
-      } finally {
-        setLoading(false)
       }
     }
     
     carregarProduto()
   }, [id])
 
-  if (loading) return <div className="text-center">Carregando...</div>
   if (!produto) return <div className="text-center">Produto não encontrado</div>
 
   return (

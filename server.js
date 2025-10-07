@@ -21,28 +21,28 @@ app.use(express.json());   // Permite processar JSON no body das requisições P
 const DB_FILE = './db.json';
 
 // Função para ler produtos do ficheiro JSON
-function carregarProdutos() {
+function lerDaBD() {
   if (!fs.existsSync(DB_FILE)) return [];                    // Se ficheiro não existe, retorna array vazio
   const data = JSON.parse(fs.readFileSync(DB_FILE, 'utf-8')); // Lê e converte JSON para objeto
   return data.produtos || [];                                 // Retorna array de produtos ou array vazio
 }
 
 // Função para guardar produtos no ficheiro JSON
-function guardarProdutos(produtos) {
+function guardarNaBD(produtos) {
   const data = { produtos };                                   // Cria objeto com array de produtos
   fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));   // Escreve no ficheiro com formatação (2 espaços)
 }
 
 // ===== ROTAS DA API REST =====
 
-// GET /api/produtos - Buscar todos os produtos
+// GET /api/produtos - Carregar todos os produtos
 app.get('/api/produtos', (req, res) => {
-  res.json(carregarProdutos());  // Retorna todos os produtos em formato JSON
+  res.json(lerDaBD());  // Retorna todos os produtos em formato JSON
 });
 
-// GET /api/produtos/:id - Buscar produto específico por ID
+// GET /api/produtos/:id - Carregar um produto específico por ID
 app.get('/api/produtos/:id', (req, res) => {
-  const produtos = carregarProdutos();                               // Carrega todos os produtos
+  const produtos = lerDaBD();                               // Carrega todos os produtos
   const produto = produtos.find(p => p.id === parseInt(req.params.id)); // Procura produto pelo ID
   if (!produto) return res.status(404).json({ erro: 'Produto não encontrado' }); // Se não encontrar, retorna erro 404
   res.json(produto);  // Retorna o produto encontrado
@@ -50,7 +50,7 @@ app.get('/api/produtos/:id', (req, res) => {
 
 // POST /api/produtos - Criar novo produto
 app.post('/api/produtos', (req, res) => {
-  const produtos = carregarProdutos();                        // Carrega produtos existentes
+  const produtos = lerDaBD();                        // Carrega produtos existentes
   const { nome, preco } = req.body;        // Extrai dados do body da requisição
   
   // Cria novo produto com ID auto-incrementado
@@ -61,31 +61,31 @@ app.post('/api/produtos', (req, res) => {
   };
   
   produtos.push(novoProduto);      // Adiciona ao array
-  guardarProdutos(produtos);       // Guarda no ficheiro
+  guardarNaBD(produtos);       // Guarda no ficheiro
   res.status(201).json(novoProduto); // Retorna produto criado com status 201 (Created)
 });
 
 // PUT /api/produtos/:id - Atualizar produto existente
 app.put('/api/produtos/:id', (req, res) => {
-  const produtos = carregarProdutos();                                    // Carrega todos os produtos
+  const produtos = lerDaBD();                                    // Carrega todos os produtos
   const index = produtos.findIndex(p => p.id === parseInt(req.params.id)); // Encontra índice do produto
   if (index === -1) return res.status(404).json({ erro: 'Produto não encontrado' }); // Se não encontrar, erro 404
   
   // Atualiza produto mantendo dados originais + dados novos (spread operator)
   produtos[index] = { ...produtos[index], ...req.body };
-  
-  guardarProdutos(produtos);       // Guarda alterações no ficheiro
+
+  guardarNaBD(produtos);       // Guarda alterações no ficheiro
   res.json(produtos[index]);       // Retorna produto atualizado
 });
 
 // DELETE /api/produtos/:id - Eliminar produto
 app.delete('/api/produtos/:id', (req, res) => {
-  let produtos = carregarProdutos();                                      // Carrega todos os produtos
+  let produtos = lerDaBD();                                      // Carrega todos os produtos
   const index = produtos.findIndex(p => p.id === parseInt(req.params.id)); // Encontra índice do produto
   if (index === -1) return res.status(404).json({ erro: 'Produto não encontrado' }); // Se não encontrar, erro 404
   
   produtos.splice(index, 1);         // Remove produto do array (splice remove 1 elemento no índice)
-  guardarProdutos(produtos);         // Guarda array atualizado no ficheiro
+  guardarNaBD(produtos);         // Guarda array atualizado no ficheiro
   res.json({ mensagem: 'Produto eliminado com sucesso' }); // Confirma eliminação
 });
 
