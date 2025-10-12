@@ -28,7 +28,6 @@ export default function EditarProduto({ isOpen, onClose, onSuccess, produto }) {
 
     try {
       await atualizarProdutoAPI(produto.id, formData)
-      alert('Produto atualizado com sucesso!')
       onSuccess()
       onClose()
     } catch (error) {
