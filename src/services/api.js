@@ -1,4 +1,4 @@
-// Carregar todos os produtos
+// GET /api/produtos - Carregar todos os produtos
 export async function carregarProdutosAPI() {
   try {
     const response = await fetch('/api/produtos')
@@ -17,7 +17,7 @@ export async function carregarProdutosAPI() {
   }
 }
 
-// Carregar produto por ID
+// GET /api/produtos/:id - Carregar um produto específico por ID
 export async function carregarProdutoPorIdAPI(id) {
   try {
     const response = await fetch(`/api/produtos/${id}`)
@@ -36,7 +36,7 @@ export async function carregarProdutoPorIdAPI(id) {
   }
 }
 
-// Adicionar novo produto
+// POST /api/produtos - Criar novo produto
 export async function adicionarProdutoAPI(dadosProduto) {
   try {
     const response = await fetch('/api/produtos', {
@@ -61,7 +61,7 @@ export async function adicionarProdutoAPI(dadosProduto) {
   }
 }
 
-// Atualizar produto existente
+// PUT /api/produtos/:id - Atualizar produto existente
 export async function atualizarProdutoAPI(id, dadosProduto) {
   try {
     const response = await fetch(`/api/produtos/${id}`, {
@@ -86,7 +86,7 @@ export async function atualizarProdutoAPI(id, dadosProduto) {
   }
 }
 
-// Eliminar produto
+// DELETE /api/produtos/:id - Eliminar produto
 export async function eliminarProdutoAPI(id) {
   try {
     const response = await fetch(`/api/produtos/${id}`, { 
