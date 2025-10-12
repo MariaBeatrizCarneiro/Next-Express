@@ -9,20 +9,21 @@ export default function ProdutoDetalhes() {
   const [produto, setProduto] = useState(null)
 
   useEffect(() => {
-    const carregarProduto = async () => {
-      if (!id) return
-      
-      try {
-        const data = await carregarProdutoPorIdAPI(id)
-        setProduto(data)
-      } catch (error) {
-        console.error(error)
-        alert('Erro ao carregar produto')
-      }
-    }
-    
     carregarProduto()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
+
+  async function carregarProduto() {
+    if (!id) return
+    
+    try {
+      const data = await carregarProdutoPorIdAPI(id)
+      setProduto(data)
+    } catch (error) {
+      console.error(error)
+      alert('Erro ao carregar produto')
+    }
+  }
 
   if (!produto) return <div className="text-center">Produto não encontrado</div>
 
