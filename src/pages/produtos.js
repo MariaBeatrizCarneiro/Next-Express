@@ -10,12 +10,10 @@ export default function Produtos() {
   const [showEditModal, setShowEditModal] = useState(false)
   const [produtoToEdit, setProdutoToEdit] = useState(null)
 
-  // Carregar produtos quando a página abre
   useEffect(() => {
     carregarProdutos()
   }, [])
 
-  // Função para carregar produtos
   async function carregarProdutos() {
     try {
       const data = await carregarProdutosAPI()
