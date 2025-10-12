@@ -19,7 +19,6 @@ export default function AdicionarProduto({ isOpen, onClose, onSuccess }) {
 
     try {
       await adicionarProdutoAPI(formData)
-      alert('Produto adicionado com sucesso!')
       setFormData({ nome: '', preco: '' })
       onSuccess()
       onClose()
